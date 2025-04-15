@@ -10,7 +10,8 @@ const HeaderSlider = () => {
       offer: "Limited Time Offer 30% Off",
       buttonText1: "Buy now",
       buttonText2: "Find more",
-      imgSrc: assets.header_headphone_image,
+      imgSrc:
+        "https://images.unsplash.com/photo-1613704193420-a53cab02d194?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 2,
@@ -18,7 +19,8 @@ const HeaderSlider = () => {
       offer: "Hurry up only few lefts!",
       buttonText1: "Shop Now",
       buttonText2: "Explore Deals",
-      imgSrc: assets.header_playstation_image,
+      imgSrc:
+        "https://images.unsplash.com/photo-1612817159623-0399784fd0ce?q=80&w=1925&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
     {
       id: 3,
@@ -26,7 +28,8 @@ const HeaderSlider = () => {
       offer: "Exclusive Deal 40% Off",
       buttonText1: "Order Now",
       buttonText2: "Learn More",
-      imgSrc: assets.header_macbook_image,
+      imgSrc:
+        "https://images.unsplash.com/photo-1596460107916-430662021049?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
   ];
 
@@ -54,29 +57,38 @@ const HeaderSlider = () => {
         {sliderData.map((slide, index) => (
           <div
             key={slide.id}
-            className="flex flex-col-reverse md:flex-row items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
+            className="flex flex-col-reverse md:flex-row relative h-[80vh] items-center justify-between bg-[#E6E9F2] py-8 md:px-14 px-5 mt-6 rounded-xl min-w-full"
           >
-            <div className="md:pl-8 mt-10 md:mt-0">
-              <p className="md:text-base text-orange-600 pb-1">{slide.offer}</p>
-              <h1 className="max-w-lg md:text-[40px] md:leading-[48px] text-2xl font-semibold">
-                {slide.title}
-              </h1>
-              <div className="flex items-center mt-4 md:mt-6 ">
-                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-orange-600 rounded-full text-white font-medium">
-                  {slide.buttonText1}
-                </button>
-                <button className="group flex items-center gap-2 px-6 py-2.5 font-medium">
-                  {slide.buttonText2}
-                  <Image className="group-hover:translate-x-1 transition" src={assets.arrow_icon} alt="arrow_icon" />
-                </button>
-              </div>
-            </div>
-            <div className="flex items-center flex-1 justify-center">
+            {/* Image background */}
+            <div className="absolute inset-0 z-0">
               <Image
-                className="md:w-72 w-48"
+                className="object-cover w-full h-full brightness-75"
                 src={slide.imgSrc}
                 alt={`Slide ${index + 1}`}
+                width={500}
+                height={500}
               />
+              <div className="absolute inset-0 bg-black/40" />
+            </div>
+
+            <div className="z-20 text-white text-center space-y-10">
+              <p className="md:text-2xl text-white">{slide.offer}</p>
+              <h1 className="md:text-[60px] md:leading-[48px] text-2xl font-semibold">
+                {slide.title}
+              </h1>
+              <div className="mt-4 md:mt-6 gap-5 grid grid-cols-2 md:px-[20%] lg:px-[30%]">
+                <button className="md:px-10 px-7 md:py-2.5 py-2 bg-green-600 rounded-full text-white font-medium">
+                  {slide.buttonText1}
+                </button>
+                <button className="flex flex-row justify-center items-center group gap-2 px-6 py-2.5 font-medium bg-white text-black rounded-full">
+                  {slide.buttonText2}
+                  <Image
+                    className="group-hover:translate-x-1 transition"
+                    src={assets.arrow_icon}
+                    alt="arrow_icon"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         ))}
@@ -88,7 +100,7 @@ const HeaderSlider = () => {
             key={index}
             onClick={() => handleSlideChange(index)}
             className={`h-2 w-2 rounded-full cursor-pointer ${
-              currentSlide === index ? "bg-orange-600" : "bg-gray-500/30"
+              currentSlide === index ? "bg-green-600" : "bg-gray-500/30"
             }`}
           ></div>
         ))}
