@@ -18,8 +18,8 @@ export const syncUserCreation = inngest.createFunction(
       event.data;
     const userData = {
       _id: id,
-      email: email_addresses[0].email.email_addresses,
-      name: first_name + "" + last_name,
+      email: email_addresses[0].email_addresses,
+      name: first_name + " " + last_name,
       imageUrl: image_url,
     };
     await connectDB();
@@ -39,8 +39,8 @@ export const syncUserUpdation = inngest.createFunction(
       event.data;
     const userData = {
       _id: id,
-      email: email_addresses[0].email.email_addresses,
-      name: first_name + "" + last_name,
+      email: email_addresses[0].email_addresses,
+      name: first_name + " " + last_name,
       imageUrl: image_url,
     };
     await connectDB();
